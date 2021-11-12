@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Conditional Statements</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, sans-serif;
+			font-size: 16px;
+		}	
+	</style>
+</head>
+<body>
+	<div class="hour">0</div>
+	<script type="text/javascript">
+		'use strict';
+
+		let thisTime = new Date(); //gets local machine day and time
+		
+		console.log(thisTime);
+
+		thisTime.setHours(6);
+
+		thisTime = thisTime.getHours(); //gets current value of time in Military time (0-23)
+
+		console.log(thisTime);
+
+		let message; //declared but no value assigned
+
+		if(thisTime < 12){
+			message = 'Good Morning';
+
+			if(thisTime < 7){
+				message += " go back to sleep!";
+			}
+			
+		}else if(thisTime < 17 ){
+			message = 'Good Afternoon';
+		}else{
+			message = 'Good Evening';
+		}	
+
+		const displayDiv = document.querySelector('.hour'); 
+
+		displayDiv.textContent = message;
+
+
+	</script>
+</body>
+</html>

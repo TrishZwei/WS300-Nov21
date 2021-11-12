@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Calculator</title>
+	<style type="text/css">
+		body{
+			font-size: 16px;
+			font-family: Verdana;
+		}
+	</style>
+</head>
+<body>
+	<h1>Calculator</h1>
+	<input type="text" id="value-one" value="0"><br>
+	<select id="my-operator">
+		<option value="">Please Choose</option>	
+		<option value="add">Plus</option>	
+		<option value="sub">Minus</option>	
+		<option value="mul">Times</option>	
+		<option value="div">Divided By</option>	
+	</select>
+	<br>
+	<input type="number" id="value-two" value="0"><br>
+	<input type="button" id="do-math" value="Do Math">
+	<div id="my-total">Total: <span>0</span></div>
+	<script type="text/javascript">
+		'use strict';
+		//global variables
+		
+		const doMathBtn = document.querySelector('#do-math');
+
+		function doMath(){
+			//alert('clicked!');
+
+			//get the value of value-one
+			let value1 = Number(document.querySelector('#value-one').value);
+			//get the value of value-two
+			let value2 = (document.querySelector('#value-two').value)*1;
+			let op = document.querySelector('#my-operator').value;
+
+			let total = 0;
+
+			console.log(value1, value2, op);
+
+			//check for NaN
+
+			if(isNaN(value1) || isNaN(value2)){
+				//tell the user their input is wrong
+				alert('You need to input a number');
+				return false;
+
+			}else{
+				//if both values are proper numbers:
+				//get the value of the operator selected by the user
+				//perform the calculation
+				if(op == ''){
+					alert('Please choose your operator');
+					return false;
+				}else if(op == 'add'){
+					total = value1 + value2;
+				}else if(op == 'sub'){
+					total = value1 - value2;
+				}else if(op == 'mul'){
+					total = value1 * value2;				
+				}else if(op == 'div'){
+					total = value1 / value2;
+				}else{
+					total = 'Shennanagans!';
+				}
+
+			}
+
+			
+
+			document.querySelector('#my-total span').textContent = total;
+
+
+
+		}//end doMath
+
+
+		//event listener:
+		doMathBtn.addEventListener('click', doMath); //no parenthis ( doMath() )
+
+
+
+
+
+
+	</script>
+
+
+</body>
+</html>
