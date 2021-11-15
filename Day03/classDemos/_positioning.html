@@ -9,50 +9,49 @@
    -->
   <style type="text/css">
     *{
-  box-sizing: border-box;
-}
+      box-sizing: border-box;
+      }
 
-body{
-  font-family:Verdana
-}
+    body{
+      font-family:Verdana
+    }
 
-div{
-  padding:1em;
-  
-}
+    div{
+      padding:1em;
+      
+    }
 
-.parent{
-  background-color: lightblue;
-  position:sticky; 
-  min-height: 200vh; /* giving element height so we can scroll.... and see how fixed works */
-}
+    .parent{
+      background-color: lightblue;
+      position:sticky; 
+      min-height: 200vh; /* giving element height so we can scroll.... and see how fixed works */
+    }
 
-.child-one{
-  background-color:green;
-  position:relative;
-  left:20px; /* overflows its parent */
-  top: 20px; /* overlaps its sibling */
-}
+    .child-one{
+      background-color:green;
+      position:relative;
+      left:20px; /* overflows its parent */
+      top: 20px; /* overlaps its sibling */
+    }
 
-.child-two{
-  background-color:coral;
-  position:absolute;
-  top:0;
-}
+    .child-two{
+      background-color:coral;
+      position:absolute;
+      top:0;
+    }
 
-.child-three{
-  background-color: magenta;
-  position:fixed;
-  top:0;
-  right:0;
-}
+    .child-three{
+      background-color: magenta;
+      position:fixed;
+      top:0;
+      right:0;
+    }
 
-.child-four{
-  background-color:rebeccapurple;
-  position:sticky;
-  top:0;
-}
-
+    .child-four{
+      background-color:rebeccapurple;
+      position:sticky;
+      top:0;
+    }
 
   </style>
 </head>
