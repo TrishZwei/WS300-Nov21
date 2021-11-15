@@ -52,12 +52,25 @@
 		}
 
 		function moveLeft(){
-			//alert('moveUp')
+			//alert('moveLeft')
 			const theLeft = parseInt(box.style.left);
 			box.style.left = (theLeft - 10)+'px';
 
 		}
 
+		function moveDown(){
+			//alert('moveDown')
+			const theTop = parseInt(box.style.top);
+			box.style.top = (theTop + 10)+'px';
+
+		}
+
+		function moveRight(){
+			//alert('moveRight')
+			const theLeft = parseInt(box.style.left);
+			box.style.left = (theLeft + 10)+'px';
+
+		}
 
 
 		//event listeners
@@ -65,7 +78,8 @@
 		document.querySelector('#move-up').onclick = moveUp;
 		document.querySelector('#move-left').onclick = moveLeft;
 
-
+		document.querySelector('#move-right').onclick = moveRight;
+		document.querySelector('#move-down').onclick = moveDown;
 	</script>
 
 
