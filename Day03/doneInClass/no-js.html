@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>No JS... OR is there?</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			font-size: 16px;
+		}
+	</style>	
+</head>
+<body>
+	<p>JS is not running on this page</p>
+	<script type="text/javascript">
+		'use strict'; //a good practice
+		document.querySelector('html').classList = 'js';
+//		document.querySelector('html').classList.remove('no-js');
+
+		document.querySelector('p').textContent = 'JavaScript IS running on this page';
+		document.querySelector('title').textContent = 'JS is Running';
+
+	</script>
+</body>
+</html>

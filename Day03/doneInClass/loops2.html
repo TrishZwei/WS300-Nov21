@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Various Loops</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			font-size: 16px;
+		}
+	</style>	
+</head>
+<body>
+	<div class="message"></div>
+	<div class="container">
+		<div>One</div>
+		<div>Two</div>
+		<div>Three</div>
+		<div>Four</div>
+		<div>Five</div>
+	</div>
+	<script type="text/javascript">
+		'use strict'; //a good practice
+		const messageDiv = document.querySelector('.message');
+
+		const myDivs = document.querySelectorAll('.container div'); //node list
+		console.log(typeof myDivs); //returns object
+		console.log(myDivs.constructor) //returns node list	
+
+		let divArray = [...myDivs];
+		console.log(typeof divArray); //returns object
+		console.log(divArray.constructor) //returns array	
+
+		//divArray = divArray.sort(); didn't work since we are not sorting the content of the divs, just the divs themselves
+		console.log(divArray);
+
+		let message = 'For each:';
+
+		divArray.forEach( function(item){
+			message += '<div>value:'+ item.textContent+'</div>';
+
+		})
+
+		messageDiv.innerHTML = message;
+
+	</script>
+</body>
+</html>
