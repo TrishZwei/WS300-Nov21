@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Various Loops</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana, Arial, Sans;
+			font-size: 16px;
+		}
+	</style>	
+</head>
+<body>
+	<div class="message"></div>
+	<script type="text/javascript">
+		'use strict'; //a good practice
+
+		const messageDiv = document.querySelector('.message'),
+		      items = ['one', 'two', 'three', 'four', 'five'],
+		      theLength = items.length; //a little easier on the processor, rather than checking the length of the array each time the loop is run. This is good when the length of the array is not changing.
+
+		      let message = '';
+
+		      //for loop v1:
+		      message = 'For loop v1:';
+
+		      for(let i = 0; i < theLength; i++){
+		      	message += '<div>value: '+items[i]+'</div>';
+		      } //since we are using let the value of i does not exist beyond the curly brace
+
+		      message = 'For loop v2:';
+		      for(let i = items.length-1; i>=0; i--){
+		      	message += '<div>value: '+items[i]+', index:'+ i +'</div>';
+		      }
+
+		      let i = 0;
+
+		      //while loop
+		      message = 'While Loop:';
+
+		     while(i<theLength){
+		     	message += '<div>value: '+items[i]+', index:'+ i +'</div>';
+		     	i++;	
+		     }
+		     console.log(message)
+
+		     i=0;
+
+		     message = 'While Loop v2:';
+		     while(items[i]){
+		     	//when there are no more values in the array it becomes falsy and stops the loop
+		     	message += '<div>value: '+items[i]+', index:'+ i +'</div>';
+		     	i++;	     	
+		     }
+
+
+		     //es6 loop iterations for arrays
+
+		     //foreach array method
+		     message = 'For Each Array method:';
+
+		     items.forEach( function(item, index){
+		     	message+= '<div>Value: '+item+', index:'+index+'</div>';
+		     })
+
+		     //for... in
+
+		     message = 'For...in loop';
+		     for(let item in items){
+		     	message += '<div>value: '+items[item]+', index'+item+'</div>'; 
+		     }
+
+		     message = 'For...of loop';
+		     for(let item of items){
+		     	message += '<div>value: '+item+'</div>'; 
+		     }
+
+		     //do while loop
+		     i = 5;
+		     message = 'Do While loop';
+		     do{
+		     	message += '<div>value: '+items[i]+'</div>';
+		     	i++;
+		     }while(i<theLength);
+
+
+		      messageDiv.innerHTML = message; //using innerHTML because we are passing HTML to the messageDiv
+
+
+
+
+	</script>
+</body>
+</html>
