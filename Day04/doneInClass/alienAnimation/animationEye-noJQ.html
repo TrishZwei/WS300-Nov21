@@ -14,7 +14,7 @@
 	<main>
 		<section class="alien">
 			<img src="images/alienbody.png" >
-			<div  class="eye"><img src="images/eye.png"></div>
+			<div  class="eye" id="eye"><img src="images/eye.png"></div>
 		</section>
 		<section id="the-select">
 			<h2>Select Your Animation</h2>
@@ -28,10 +28,74 @@
 		</section>
 		<p>This CSS animation library can be found at: <a href="http://www.justinaguilar.com/animations/" target="_blank" title="Link will open in new tab.">http://www.justinaguilar.com/animations/</a></p>
 	</main>
-	<!-- jquery goes here -->
-	
 	<script type="text/javascript">
 	//code to go in here.
+	document.querySelector('html').classList = 'js'; //shows our buttons
+	const alien = document.querySelector('.alien');
+	eye.style.cssText = 'left:38.3333%';
+
+	//eye animation
+
+	document.addEventListener('mousemove', function(event){
+		//event data is stored in event
+
+		let oneThird = window.innerWidth/3;
+
+			if(event.pageX < oneThird){
+				//on lefthand 
+				eye.style.cssText = 'left:38.3333%';
+				console.log('left one third?');
+			}else if(event.pageX > oneThird * 2){
+				//right hand side
+				console.log('right one third');
+				eye.style.cssText = 'left:41.6666%';
+			}else{
+				eye.style.cssText = 'left:40%';
+			}
+
+
+	})
+
+	function reapplyClass(){
+		alien.classList = 'alien';
+	}
+
+
+document.querySelector('.container').addEventListener('click', function(e){
+	//e represents the event object
+	 	let el = e.target; //the element in the container that was clicked
+	 	//alert(el);
+	 	console.log(el.id);
+
+	 	switch(el.id){
+	 		case 'slide-up':
+	 		alien.classList = 'slideUp alien';
+	 		setTimeout(reapplyClass, 1200);
+	 		break;
+
+	 		case 'fade-in':
+	 		alien.classList = 'fadeIn alien';
+	 		setTimeout(reapplyClass, 1200);
+	 		break;
+
+	 		case 'pulse-btn':
+	 		alien.classList = 'pulse alien';
+	 		break;
+
+	 		case 'float-btn':
+	 		alien.classList = 'floating alien';
+	 		break;
+
+	 		case 'tossing-btn':
+	 		alien.classList = 'tossing alien';
+	 		break;
+
+	 	}
+
+})
+
+
+
 	
 	</script>
 </body>

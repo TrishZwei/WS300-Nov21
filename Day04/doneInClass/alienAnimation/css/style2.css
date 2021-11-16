@@ -57,6 +57,7 @@ div.eye{
 	position: absolute;
 	top:44.5%;
 	left: 40%;
+	transition: all .5s ease;
 }
 .container{
 	background-color: green;
