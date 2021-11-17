@@ -33,7 +33,7 @@ h1{
 } 
 
 
-#inner{
+.inner-red, .inner-yellow, .inner-green{
     border-radius: 50%;  
     height:300px;
     width: 300px;
@@ -43,6 +43,15 @@ h1{
     background-color: red;
     border: 2px solid #9e9e9e;
 } 
+
+.inner-yellow{
+	background-color: yellow;
+}
+
+.inner-green{
+	background-color: green;
+}
+
 
 #turret{
     border-radius: 50%;  
@@ -60,15 +69,20 @@ width: 200px;
 height: 20px;
 position: absolute;
 bottom: -10px;
+left:300px;
 background-color: #999;
 transform:rotate(0deg);
 border-radius: 100% 50% 50% 100%;
 transform-origin: 100% 50%;
-left:300px;
+
  
 }
 
-/*https://codepen.io/iliadraznin/pen/JcqbE*/
+/*
+CSS for minute marks taken from here
+https://codepen.io/iliadraznin/pen/JcqbE
+for our purposes, we're applying JS to style each of the li's rather than individually styling each one as seen in the link above.
+*/
 
 .minute-marks li {
     display: block;
@@ -121,55 +135,68 @@ left:300px;
 	<li></li>
 </ul>
 </div>    
-<div id="inner"></div>    
+<div class="inner-red"></div>    
+<div class="inner-yellow"></div>    
+<div class="inner-green"></div>    
 <div id="needle"></div>
 <div id="turret"></div>    
 </div>    
+<input type="number" id="raised-amt">	
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.transit/0.9.12/jquery.transit.min.js"></script> -->
+<!-- add transit? -->
 <script type="text/javascript"> 
+let goalAmt = 1000;
+let amt = 550.42;
 
-var goalAmt = 1000;
-var amt = 675.59;
-var bgColor = 'red';
-var perc = amt/goalAmt;
+function showGoalAmt(){
+	let bgColor = 'red';
+	let perc = amt/goalAmt;
 
-$('#banner span').text(Math.round(perc*100));
+	$('#banner span').text(Math.round(perc*100))
+		//depending on perc amount of red, yellow, green opacity
+		console.log(perc);
+		if(perc*100 <= 50){
+			$('.inner-green').css({'opacity':0});
+			$('.inner-yellow').css({'opacity': perc*2})
+		}else{
+			$('.inner-yellow').css({'opacity': 1})
+			
+			$('.inner-green').css({'opacity': (perc*2)-1})
+		}
 
-if( perc > .665){
- bgColor = 'green';
-}else if( perc > .335){
- bgColor = 'yellow';
+		$('#needle').css({'transform':'rotate('+180*perc+'deg)'});
+
 }
 
-if(perc > 1){
-	perc = 1.001;
-	bgColor = '#a570da';
-}
-	$('#inner').css({'background-color':bgColor})
+showGoalAmt();
 
 
-$('#needle').css({ 'transform': 'rotate('+ 180*perc+'deg)' });
+$('#raised-amt').change( function(){
 
-// manipulating all the tic marks
-var rotateVal = 0;
-//var translateVert = -12.7;
-//example CSS text: transform: rotate(0deg) translate(0px, -12.7em);
-$('.minute-marks li').each( function(i){
-//	$(this).css({'rotate':rotateVal, y:translateVert+'em'}); //with transit plugin
-	console.log('transform:rotate('+rotateVal+'deg) translate(0px, -12.7em);')
-	this.style.cssText = 'transform:rotate('+rotateVal+'deg) translate(0px, -12.7em);'
+	amt = this.value;
+	showGoalAmt();
 
-	rotateVal +=6;
-
-	if(i == 15 ){
-
-	rotateVal += 174;
-
-	}
 
 })
+
+//tickmarks code
+let rotateVal = 0;
+
+
+$('.minute-marks li').each( function(i){
+	//i tells us which item in the index we are on
+
+		this.style.cssText = 'transform:rotate('+rotateVal+'deg) translate(0px, -12.7em);';
+		rotateVal+=6;
+
+		if(i == 15){
+			rotateVal += 174;
+		}
+
+
+})
+
 
 
 </script>

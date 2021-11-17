@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery Intro</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana;
+		}	
+
+		.blue{
+			color: blue;
+		}
+
+		.red{
+			color: red;
+		}
+
+
+	</style>
+
+</head>
+<body>
+	<div id="my-div">A div with id</div>
+	<p id="para-1">A paragraph with id #para-1</p>
+	<p id="para-2">A paragraph with id #para-2</p>
+	<p class="blue">A paragraph with class blue</p>
+	<p class="blue">A paragraph with class blue</p>
+	<input type="button" value="Change Class" id="my-btn">
+<!-- jQ -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!-- custom script that uses jQ -->
+
+<script type="text/javascript">
+	//accessing jQuery methods
+
+	$('#my-btn').click( function(){
+		$('div+p').fadeToggle(2000, "linear");
+		if($('p').hasClass('blue')){
+			$('p.blue').removeClass('blue')
+					   .addClass('red')
+					   .text('A paragraph with class red');
+					   //change add/remove to attr(class)
+		}else{
+			$('p.red').attr('class', 'blue')
+					  .text('A paragraph with class blue');
+		}
+
+	})
+
+
+	$('div').css({
+		'background-color':'green',
+		'border':'1px solid black',
+		'color': 'white'
+	})
+
+
+
+</script>
+</body>
+</html>
