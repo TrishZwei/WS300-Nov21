@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>RGB Example</title>
+	<style type="text/css">
+		#box{
+			height: 50px;
+			width: 50px;
+			border: 1px solid black;
+		}	
+	</style>
+
+</head>
+<body>
+	<div id="box"></div>
+<script type="text/javascript">
+	'use strict';
+
+	let r = getRandInt(0,255),
+		g = getRandInt(0,255),
+		b = getRandInt(0, 255);
+		console.log(r, g, b)
+
+	let color1 = 'rgb('+r+','+g+','+b+')';
+	console.log(color1);	
+	let color2 = 'rgb('+getRandInt(0,255)+','+getRandInt(0,255)+','+getRandInt(0,255)+')';
+	console.log(color2);
+
+	function rgbGen(){
+		return 'rgb('+getRandInt(0,255)+','+getRandInt(0,255)+','+getRandInt(0,255)+')';
+
+	}
+
+	let color3 = rgbGen();
+	console.log(color3);
+
+
+		//generate whole random integer
+		function getRandInt(min = 1, max = 100){
+			return Math.floor(Math.random() * (max - min +1) ) + min;
+		}	
+
+
+</script>
+
+</body>
+</html>

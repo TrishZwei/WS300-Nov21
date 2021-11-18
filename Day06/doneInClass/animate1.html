@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Animate 1</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana;
+		}
+
+		#my-div{
+			position: relative;
+			width: 200px;
+			height: 100px;
+			box-sizing: border-box;
+			padding: 1.25rem; 
+			background: cornflowerblue;
+			border: 1px solid black;
+			font-size: 16px;
+		}
+
+		button{
+			margin: 5px;
+		}
+
+
+	</style>
+</head>
+<body>
+	<div id="my-div">Animate Me!</div>
+	<button id="right">Grow Right</button>
+	<button id="text">Grow Text</button>
+	<button id="move">Move Right</button>
+	<button id="all">All Properties</button>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+	'use strict';
+	let myDiv = $('#my-div');
+
+//on is long hand, allows for more than 1 type of event listener to be added, allows for namespace to be reserved for listener so that we have more granular control over this listener
+	$('#right').on('click dblclick', function(){
+		//syntax for animate is: $(selector).animate({property:value}, duration, easing, callback)
+		myDiv.animate({'width':'+=50px'}, 1000, 'linear', function(){
+			console.log('I\'m done animating!'); // \ is an escape character that lets JS know that we want the ' character and that is not the end of our string
+		})
+	})
+
+	$('#text').click(function(){
+		myDiv.animate({'font-size': '+=5px'}, 500);
+
+	})
+	
+	$('#move').click( function(){
+		myDiv.animate({'left':'+=100px'}, 5000, "swing");
+
+	})
+
+	let w = '+=50px';
+
+	$('#all').click(function(){
+		myDiv.animate({'width':w,'font-size': '+=5px', 'left':'+=100px'}, 1000)
+
+	})
+
+
+		
+
+
+
+</script>
+
+</body>
+</html>
