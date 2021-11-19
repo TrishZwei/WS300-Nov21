@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Using the jQuery Event Object</title>
+<style type="text/css">
+body{
+    font-size: 16px;
+    font-family: Verdana;
+}
+
+div{
+    width: 40px;
+    height: 10px;
+    background-color: firebrick;
+    border: 1px solid white;
+    float: left;
+}
+    
+button{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+#stop{
+    left: 100px;
+}
+
+
+
+</style>
+</head>
+<body>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>  
+<script type="text/javascript">
+    'use strict';
+    let globalId; //stores our timer
+    let isAnimating = false; 
+    let numBricks = 0; //how many bricks?
+
+    let classArray = ['Luke', 'Virginia', 'Justin', 'Trish']
+
+    function generateBricks(){
+
+        numBricks++;
+        $('<div>').appendTo('body').attr('id', numBricks).attr('class', classArray[numBricks%classArray.length]); //creates new div, appends it to the body, gives it an id the value of the current number of bricks
+        globalId = requestAnimationFrame(generateBricks);
+    }
+
+    $('#start').on('click', function(){
+        if(!isAnimating){
+            //also isAnimating == false
+            globalId = requestAnimationFrame(generateBricks);
+            isAnimating = true;
+        }
+
+    })
+
+    $('#stop').on('click', function(){
+        cancelAnimationFrame(globalId);
+        isAnimating = false;
+    })
+
+
+
+</script>
+</body>
+</html>

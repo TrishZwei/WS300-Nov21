@@ -75,71 +75,55 @@ body{
 <script type="text/javascript">
 
     //update event details:
+
+    function updateEventDetails(e){
+        //targets spans with ids and sets their value to empty
+        $('.detailLine span[id]').text('');  
+        e.stopPropagation(); //stops events from bubbling up or down the DOM
+        $('#evtType').text(e.type);
+        $('#evtWhich').text(e.which);
+        $('#evtTarget').text(e.target.id);
+        if(e.relatedTarget){ //renders true if there is a value
+            $('#evtRelated').text(e.relatedTarget.tagName);
+
+        }
+
+        //where on the document the mouse pointer is:
+        $('#evtPageX').text(e.pageX); //horizontal
+        $('#evtPageY').text(e.pageY); //vertical
+
+
+        //where in the window the mouse pointer is:
+
+        $('#evtClientX').text(e.clientX); //horizontal
+        $('#evtClientY').text(e.clientY); //vertical
+
+        if(e.data){
+            $('#evtData').text(e.data.name);
+        }
+
+    }
+
+
     
     $('#Div1').on('click dblclick', {name:'wizard'}, function(e){
         console.log(e);
-        //targets spans with ids and sets their value to empty
-        $('.detailLine span[id]').text('');  
         e.stopPropagation(); //stops events from bubbling up or down the DOM
-        $('#evtType').text(e.type);
-        $('#evtWhich').text(e.which);
-        $('#evtTarget').text(e.target.id);
-        if(e.relatedTarget){ //renders true if there is a value
-            $('#evtRelated').text(e.relatedTarget.tagName);
-
-        }
-
-        //where on the document the mouse pointer is:
-        $('#evtPageX').text(e.pageX); //horizontal
-        $('#evtPageY').text(e.pageY); //vertical
-
-
-        //where in the window the mouse pointer is:
-
-        $('#evtClientX').text(e.clientX); //horizontal
-        $('#evtClientY').text(e.clientY); //vertical
-
-        if(e.data){
-            $('#evtData').text(e.data.name);
-        }
-
-
+        updateEventDetails(e);
     })
 
-        $('#Div2').on('mouseenter mouseleave', {name:'pirate'}, function(e){
+    $('#Div2').on('mouseleave mouseenter', {name:'pirate'}, function(e){
         console.log(e);
-        //targets spans with ids and sets their value to empty
-        $('.detailLine span[id]').text('');  
         e.stopPropagation(); //stops events from bubbling up or down the DOM
-        $('#evtType').text(e.type);
-        $('#evtWhich').text(e.which);
-        $('#evtTarget').text(e.target.id);
-        if(e.relatedTarget){ //renders true if there is a value
-            $('#evtRelated').text(e.relatedTarget.tagName);
-
-        }
-
-        //where on the document the mouse pointer is:
-        $('#evtPageX').text(e.pageX); //horizontal
-        $('#evtPageY').text(e.pageY); //vertical
-
-
-        //where in the window the mouse pointer is:
-
-        $('#evtClientX').text(e.clientX); //horizontal
-        $('#evtClientY').text(e.clientY); //vertical
-
-        if(e.data){
-            $('#evtData').text(e.data.name);
-        }
-
-
+        updateEventDetails(e);
     })
 
 
+    $('#Div3').on('mousemove', {name:'ninja'}, updateEventDetails);
 
+    $('#input1').keyup(updateEventDetails);
 
-
+    $(document).on('keypress', {name:'keypress'}, updateEventDetails)
 
 
 
