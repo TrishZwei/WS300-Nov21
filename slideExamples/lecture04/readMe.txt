@@ -1,1 +1,0 @@
-There is no code in lecture 4

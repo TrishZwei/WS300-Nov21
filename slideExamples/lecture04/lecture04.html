@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Logic Problem</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana;
+		}
+
+	</style>
+</head>
+<body>
+	<p>Take a moment to figure out why this code is not working properly... (Trust me it IS NOT working like you might expect.</p>
+	<div id="message"></div>
+<script type="text/javascript">
+	d = new Date();
+	h = d.getHours();
+
+if(h>=0){
+display = 'morning';
+}else if(h>11){
+display = 'afternoon';
+}else{
+display = 'evening';
+}
+
+document.querySelector('#message').textContent = display;
+
+
+
+</script>
+</body>
+</html>
