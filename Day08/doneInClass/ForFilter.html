@@ -43,7 +43,7 @@
 
 </head>
 <body>
-<input type="text" class="my-input" placeholder="Search for names..">
+<input type="text" class="my-input" placeholder="Search for names...">
 
 <h3>Top 100 Names</h3>
 <ul class="list">
@@ -248,6 +248,38 @@
 	<li data-gender="boy">Jason</li>
 	<li data-gender="girl">Madeline</li>
 </ul>
+	<script type="text/javascript">
+		'use strict';
+
+		function myFilter(){
+			//declare variables:
+			let input, filter, ul, li, a, i, txtValue;
+			input = document.querySelector('.my-input');
+			filter = input.value.toUpperCase();
+			ul = document.querySelector('.list');
+			li = ul.getElementsByTagName('li');
+
+			//loop through all the items and hide those that do not match the search query
+			for(let i = 0; i < li.length; i++){
+				let a = li[i];
+				console.log(a)
+
+				txtValue = a.textContent || a.innerText;
+				if(txtValue.toUpperCase().indexOf(filter) > -1){
+					a.style.display = '';
+				}else{
+					a.style.display = "none";
+				}
+
+			}
+		}	
+
+		document.querySelector('.my-input').addEventListener('keyup', myFilter)
+
+
+
+	</script>
+
 
 
 </body>
