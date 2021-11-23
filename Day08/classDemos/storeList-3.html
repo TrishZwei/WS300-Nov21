@@ -60,6 +60,14 @@
 (function() {
 var storeList = [];
 
+$('#clear').click( function(){
+	storeList = []; //empties store list
+	$('#list').text(''); //empties UL
+
+})
+
+
+
 $('#add').click( function(){
 //	alert('clicked!');
 var innerArray = [];
