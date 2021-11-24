@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Luke Question</title>
+</head>
+<body>
+<p>found here: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors</a></p>
+
+<script type="text/javascript">
+const person1 = {};
+person1['firstname'] = 'Mario';
+person1['lastname'] = 'Rossi';
+
+console.log(person1.firstname);
+// expected output: "Mario"
+
+const person2 = {
+  firstname: 'John',
+  lastname: 'Doe'
+};
+
+console.log(person2['lastname']);
+// expected output: "Doe"
+
+const person3 = {}
+	person3.firstname = 'Luke';
+	//person3.info = 'birthday: 9/24', 'favorite food: hamburger'; //this just gets first item
+	person3.info = {birthday: '9/24', favoriteFood: 'hamburger'}
+
+
+
+console.log(person3, person3.info.favoriteFood);
+
+
+
+</script>
+</body>
+</html>
