@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Store List</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana;
+			font-size: 20px;
+			margin: 0 auto;
+		}
+
+		.strike{
+			text-decoration: line-through;
+		}
+
+		h1{
+			text-align: center;
+		}
+
+
+		input{
+			display: block;
+			height: 40px;
+			font-size: 1em;
+			margin: 0 auto 5px;
+		}
+
+		.button{
+			background-color: cadetblue;
+			border-radius: 20px;
+			color: white;
+			width: 100px;
+			height: 40px;
+			padding: 5px;
+			margin: 5px auto;
+			cursor: pointer;
+			line-height: 2em;
+			text-align: center;
+		}
+
+		.wrapper{
+			margin: 0 auto;
+			width: 500px;
+		}
+
+	</style>
+
+</head>
+<body>
+	<div class="wrapper">
+		<h1>Store List</h1>
+		<ul class="list">
+			<!-- nothing goes in here -->
+		</ul>
+
+		<input type="text" placeholder="item" class="new-item">
+		<input type="number" placeholder="# of items" class="quantity">
+		<div class="button add">Add Item</div>
+	</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!-- any jQ Plugins go here -->
+<script type="text/javascript">
+	'use strict';
+
+	const storeList = []; //empty array
+	//new Array() will also create an array but this is not the preferred method.
+	//new Array(40) will create an array of 40 empty items
+
+	$('.add').click( function(){
+		let innerArray = [];
+
+		let newItem = $('.new-item').val(); 
+		//vanilla JS: document.querySelector('.new-item').value
+			newItem = newItem.trim().toLowerCase(); //formatting
+
+		if(newItem != ''){
+			//not empty, do stuff!
+			var quantity = $('.quantity').val();
+
+			if(quantity == 0 || isNaN(quantity) || quantity == ''){
+				quantity = 1;
+			}
+			innerArray.push(newItem); //adds name of item to inner array
+			innerArray.push(quantity); //adds amount of item 
+			innerArray.push(false); //indicates if item needs to be striked out
+
+			storeList.push(innerArray);
+			storeList.sort(); 
+
+			$('.list').text('');
+
+			//take store list create a new li for every item and append it to the ul
+
+			for(let i = 0; i <storeList.length; i++){
+				let theText = storeList[i][0];
+				let theQuantity = storeList[i][1];
+				let strike = storeList[i][2];
+
+				let newLi = $('<li>').text(theText+' - '+theQuantity).appendTo('.list');
+
+				if(strike){
+					newLi.addClass('strike')
+				}
+
+				newLi.click( function(){
+					strikeItem(this); //when clicked it passes the element that got clicked to the strikeItem function
+				})
+
+			}//end for loop
+
+
+		}//end if newItem has a value
+		else{
+			alert('You need to type waht item you want to add.');
+		}
+
+	}) //end add.click
+
+
+function  strikeItem(theItem) {
+	//theItem was newLi when it was created
+ 	theItem = $(theItem);
+	theItem.addClass('strike');
+
+	let theText = theItem.text();
+		theText = theText.split(' - ')[0];
+//	let theIndex = theText.indexOf(' ');
+//		theText = theText.substring(0, theIndex);
+		console.log(theText);
+
+	for(let i = 0; i < storeList.length; i++){
+		if(theText == storeList[i][0]){
+
+			storeList[i][2] = true;
+		
+		}
+
+		console.log(storeList[i]);
+
+	} //end for loop	
+
+
+}
+
+
+
+
+
+</script>
+</body>
+</html>

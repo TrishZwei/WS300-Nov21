@@ -69,7 +69,26 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <!-- any jQ Plugins go here -->
 <script type="text/javascript">
+	'use strict';
+	let classArray = ['blue', 'red', 'purple', 'pink', 'blue', 'red', 'purple'];
 
+	$('.sock').each( function(){
+		let theClass = ''+classArray.splice(getRandomInt(0,classArray.length-1), 1);
+		$(this).addClass(theClass);
+
+	})
+
+	$('img').click( function(){
+		let theParent = $(this).parent();
+		$(this).fadeOut(1000);
+
+		if(theParent.hasClass('pink')){
+			setTimeout(function(){
+			alert('You win!');				
+		}, 1000)
+		}
+
+	})
 
 
 

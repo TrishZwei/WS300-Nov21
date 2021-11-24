@@ -55,43 +55,56 @@
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
+'use strict';
 
-function init(){
+(function() {
 var storeList = [];
+
+$('#clear').click( function(){
+	storeList = []; //empties store list
+	$('#list').text(''); //empties UL
+
+})
+
+
 
 $('#add').click( function(){
 //	alert('clicked!');
 var innerArray = [];
 var newItem = $('#new-item').val();//gets the current value out of new-item when the add button is clicked.
-newItem = newItem.trim(); //removes space from before and at the end
+	newItem = newItem.trim().toLowerCase(); //removes space from before and at the end, and formatting
 
 	if(newItem != ''){
-
-	//to prevent user error problems 
-	newItem = newItem.toLowerCase();
 
 	var quantity = parseInt($('#quantity').val());
 
 	if(quantity == 0 || isNaN(quantity) || quantity == ''){
 	quantity = 1;
 	}
-	innerArray.push(newItem); //adds to 0 index
-	innerArray.push(quantity);
-	innerArray.push(false);
-	storeList.push(innerArray);
+
+	let newObject = {
+				 item: newItem,
+				 qty: quantity,
+				 strike: false	
+
+				}
+	console.log(newObject);
+
+	storeList.push(newObject);
 	storeList.sort(); //sort the list in alpha order
 
-	console.log(storeList);
+//	console.log(storeList);
 	$('#list').text('');
 
 	for(var i=0; i<storeList.length; i++){
-		var theText = storeList[i][0];
-		var theQuantity = storeList[i][1];
-		var strike = storeList[i][2]; //true or false
+		var theText = storeList[i].item;
+		var theQuantity = storeList[i].qty;
+		var strike = storeList[i].strike; //true or false
 
 		//create a new list item
 		var newLi = $('<li>');
 		newLi.text(theText+'-'+theQuantity);
+		console.log(strike)
 		if(strike){
 			newLi.addClass('strike');
 		}
@@ -123,25 +136,17 @@ function strikeItem(theItem){
 	theText = ''+theText[0]
 
 	for(var j=0; j<storeList.length; j++){
-		if(theText == storeList[j][0]){
-			storeList[j][2] = true;
+		if(theText == storeList[j].item){
+			storeList[j].strike = true;
 		}
 
 	}
 
 }
 
-
-/* this does not work... why?
-$('li').click( function(){
-	alert('clicked')
-})
-*/
+}())
 
 
-}	
-
-init();
 
 </script>
 </body>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Store List</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana;
+			font-size: 20px;
+			margin: 0 auto;
+		}
+
+		.strike{
+			text-decoration: line-through;
+		}
+
+		h1{
+			text-align: center;
+		}
+
+
+		input{
+			display: block;
+			height: 40px;
+			font-size: 1em;
+			margin: 0 auto 5px;
+		}
+
+		.button{
+			background-color: cadetblue;
+			border-radius: 20px;
+			color: white;
+			width: 100px;
+			height: 40px;
+			padding: 5px;
+			margin: 5px auto;
+			cursor: pointer;
+			line-height: 2em;
+			text-align: center;
+		}
+
+		.wrapper{
+			margin: 0 auto;
+			width: 500px;
+		}
+
+	</style>
+
+</head>
+<body>
+	<div class="wrapper">
+		<h1>Store List</h1>
+		<ul class="list">
+			<!-- nothing goes in here -->
+		</ul>
+
+		<input type="text" placeholder="item" class="new-item">
+		<input type="number" placeholder="# of items" class="quantity">
+		<div class="button add">Add Item</div>
+	</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!-- any jQ Plugins go here -->
+<script type="text/javascript">
+	'use strict';
+
+	const storeList = []; //empty array
+	//new Array() will also create an array but this is not the preferred method.
+	//new Array(40) will create an array of 40 empty items
+
+	$('.add').click( function(){
+
+		let newItem = $('.new-item').val(); 
+		//vanilla JS: document.querySelector('.new-item').value
+			newItem = newItem.trim().toLowerCase(); //formatting
+
+		if(newItem != ''){
+			//not empty, do stuff!
+			var quantity = $('.quantity').val();
+
+			if(quantity == 0 || isNaN(quantity) || quantity == ''){
+				quantity = 1;
+			}
+
+			newItem += ' - '+quantity;
+
+			storeList.push(newItem);
+			storeList.sort(); 
+
+			$('.list').text('');
+
+			//take store list create a new li for every item and append it to the ul
+
+			for(let i = 0; i <storeList.length; i++){
+
+				let theItem = storeList[i];
+				let newLi = $('<li>').text(theItem).appendTo('.list');
+
+			}
+
+
+		}//end if newItem has a value
+		else{
+			alert('You need to type waht item you want to add.');
+		}
+
+
+
+
+	})
+
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Random Name Generator</title>
+	<style type="text/css">
+		body{
+			font-family: Verdana;
+		}
+
+		#full-name{
+			border: 1px solid black;
+		}
+
+
+		.button{
+			background-color: rebeccapurple;
+			color: white;
+			border-radius: 20px;
+			padding: .5em;
+			width: fit-content;
+			margin-top: 5px;
+			cursor: pointer;
+		}
+
+
+	</style>
+
+</head>
+<body>
+<!-- stuff to manipulate goes here -->
+	<h1>Random Name Generator</h1>
+	<div id="full-name">Your New Name: <span></span></div>
+	<div class="button">Get My New Name!</div>
+<!-- jquery! -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!-- any jQ Plugins go here -->
+<script type="text/javascript">
+	'use strict';
+	// let firstNames = ['luke', 'virginia', 'justin'];
+
+	// for(let i = 0; i<firstNames.length; i++){
+	// 	let value = firstNames[i];
+	// 	//console.log(value.constructor)
+	// 	let firstLetter = value[0].toUpperCase();
+	// 	let name = firstLetter+value.slice(1);
+	// 	//console.log(name);
+	// 	firstNames[i] = name;
+
+	// }
+	// console.log(firstNames);
+
+
+
+	$('.button').click( function(){
+		let firstNames = ['Luke', 'Virginia', 'Justin'];
+		console.log(firstNames[0][0])
+		firstNames.push('Trish'); //adds to end
+		firstNames.unshift('Fred');
+		firstNames.sort(); //sorts alphabetically
+		firstNames.reverse(); //reverses the current sort order
+		//firstNames.shift(); //removes first item from the list
+		delete firstNames[1];
+		console.log(firstNames[1]); //undefined
+		firstNames.splice(1,1); //item at index 1 get rid of 1
+		console.log(firstNames);
+
+		let firstName = firstNames[getRandomInt(0, firstNames.length-1)];
+		console.log(firstName);
+
+		let lastNames = ['Stark', 'Baratheon', 'Lannister', 'Tyrel', 'Tully', 'Arryn', 'Greyjoy', 'Targaryen'];
+		let lastName = lastNames[getRandomInt(0,lastNames.length-1)];
+
+		let middleInitials = 'abcdefghijklmnopqrstuvwxyz';
+		    middleInitials = middleInitials.toUpperCase();
+		    middleInitials = middleInitials.split(''); //no character	
+		let middleInitial = middleInitials[getRandomInt(0,25)];
+		
+
+		//concatenation version: firstName+' '+middleInitial+'. '+lastName;
+		let fullName = `${firstName} ${middleInitial}. ${lastName}`;    
+
+		$('#full-name span').text(fullName)
+
+
+	})
+
+
+
+	
+//randomIntFunction, parameters defined is for default values
+	function getRandomInt(min = 1, max = 100){
+		return Math.floor( Math.random() * (max - min + 1) ) + min;
+	}
+
+
+</script>
+</body>
+</html>
