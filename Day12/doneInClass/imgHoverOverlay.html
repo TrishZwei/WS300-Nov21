@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hover Overlay</title>
+<style type="text/css">
+	body{
+		font-family: Verdana,sans-serif;
+		font-size: 18px;
+		margin: 0 auto;
+	}
+	.hoverbox{
+		width: 350px;
+		height: 250px;
+		border: 1px solid black;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.hover-overlay{
+		width: 350px;
+		height: 250px;
+		background-color: rgba(0,0,0,.7);
+		position: absolute;
+		top:200px;
+		left: 0;
+		color: white;
+	}
+
+	.hover-overlay h3{
+		padding: 0 .5em;
+	}
+
+	.box1{
+		background-image: url('images/bunny.jpg')
+	}
+
+
+</style>
+
+</head>
+<body>
+<!-- stuff to manipulate goes here -->
+<div class="hoverbox box1">
+	<div class="hover-overlay">
+		<h3>Bunny</h3>
+		<p>Sooooo cuuuuuute!</p>
+	</div>
+</div>
+
+
+<!-- jquery! -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!-- any jQ Plugins go here -->
+<script type="text/javascript">
+
+</script>
+</body>
+</html>
