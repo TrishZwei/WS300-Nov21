@@ -34,6 +34,17 @@
 		background-image: url('images/bunny.jpg')
 	}
 
+	.box2{
+		background-image: url('images/kitten.jpg')
+	}
+
+	.box3{
+		background-image: url('images/puppy.jpg')
+	}
+
+	.box4{
+		background-image: url('images/hamster.jpg')
+	}
 
 </style>
 
@@ -46,7 +57,24 @@
 		<p>Sooooo cuuuuuute!</p>
 	</div>
 </div>
-
+<div class="hoverbox box2">
+	<div class="hover-overlay">
+		<h3>Kitten</h3>
+		<p>Sooooo fluffy I'm gonna die!</p>
+	</div>
+</div>
+<div class="hoverbox box3">
+	<div class="hover-overlay">
+		<h3>Puppy</h3>
+		<p>Adorbs!</p>
+	</div>
+</div>
+<div class="hoverbox box4">
+	<div class="hover-overlay">
+		<h3>Hamster</h3>
+		<p>Button Nose!</p>
+	</div>
+</div>
 
 <!-- jquery! -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -64,9 +92,9 @@
 $('.hoverbox').on('mouseenter mouseleave', function(e){
 	//e stands for the event object
 	if(e.type == 'mouseenter'){
-		$('.hover-overlay').stop().animate({'top': 0}, 400);
+		$(this).children('.hover-overlay').stop().animate({'top': 0}, 400);
 	}else{
-		$('.hover-overlay').stop().animate({'top': 200}, 400);
+		$(this).children('.hover-overlay').stop().animate({'top': 200}, 400);
 	}
 
 
