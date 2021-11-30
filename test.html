@@ -56,19 +56,17 @@ function addHouse(ele, type = ''){
 	}
 	ele.classList = 'plot';
 	if(ele.type == 'style-one'){
-		ele.classList.add('red');
+		ele.house = houseObject;
 	}else{
-		ele.classList.add('blue');
+		ele.house = houseObject2;
 	}
 
-
+//	console.log(ele.house.color)
+	ele.classList.add(ele.house.color);
+	ele.textContent = ele.house.furn;
+	console.log(ele.house.furn)
 	houseType = ''; //resetting the value
 
-	// if(ele.type == undefined){
-	// 	//does not have this property yet
-	// 	ele.type = type;
-	// }
-	console.log(ele.type); //the keyword this returns the window here.
 }	
 
 for(let i = 0; i < plots.length; i++){

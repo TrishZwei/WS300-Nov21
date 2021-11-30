@@ -4,24 +4,25 @@
 
 
 class House{
-	constructor(color){
+	constructor(color, furn){
 		this.color = color
+		this.furn = furn
 	}
 
-	getFurniture(){
-		return 'sofa'
-	}
+	// getFurniture(){
+	// 	return furn;
+	// }
 
 }
 
-const houseObject = new House('red')
-const houseObject2 = new House('blue')
+const houseObject = new House('red', 'sofa')
+const houseObject2 = new House('blue', 'bed')
 
 
 console.log(houseObject.color)
-console.log(houseObject.getFurniture())
+//console.log(houseObject.getFurniture())
 
 console.log(houseObject2.color)
-console.log(houseObject2.getFurniture())
+//console.log(houseObject2.getFurniture())
 
 //Object destructuring: https://www.youtube.com/watch?v=NIq3qLaHCIs
