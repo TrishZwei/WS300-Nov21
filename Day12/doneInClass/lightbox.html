@@ -104,13 +104,15 @@
 <body>
 <!-- stuff to manipulate goes here -->
 <h1>Image Lightbox</h1>
-<img src="https://picsum.photos/150/150?image=1051" class="lb-btn" data-content="https://picsum.photos/500/500?image=1051" alt="beautiful lake pier">
-<img src="https://picsum.photos/150/150?image=1057" class="lb-btn" data-content="https://picsum.photos/500/500?image=1057" alt="cliffside over the ocean">
-<img src="https://picsum.photos/150/150?image=1053" class="lb-btn" data-content="https://picsum.photos/500/500?image=1053" alt="seafoam">
-<img src="https://picsum.photos/150/150?image=1050" class="lb-btn" data-content="https://picsum.photos/500/500?image=1050" alt="rocky straights">
+<!-- <img src="https://picsum.photos/150/150?image=1051" class="lb-btn" data-content="https://picsum.photos/500/500?image=1051" alt="beautiful lake pier">
+ -->
+ <img src="images/1051-150x150.jpg" class="lb-btn" data-content="images/1051-500x500.jpg" alt="beautiful lake pier">
+<img src="images/1057-150x150.jpg" class="lb-btn" data-content="images/1057-500x500.jpg" alt="cliffside over the ocean">
+<img src="images/1050-150x150.jpg" class="lb-btn" data-content="images/1050-500x500.jpg" alt="seafoam">
+<img src="images/1053-150x150.jpg" class="lb-btn" data-content="images/1053-500x500.jpg" alt="rocky straights">
 <div class="overlay"></div>
 <div class="modal">
-		<img src="https://picsum.photos/500/500?image=1050">
+		<img src="images/1053-500x500.jpg">
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
 		<button class="close">Close</button>
 </div>
@@ -118,7 +120,20 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <!-- any jQ Plugins go here -->
 <script type="text/javascript">
-	
+		$('.lb-btn').on('click', function(){
+			let theDesc = $(this).attr('alt'); 
+			let thePath = $(this).attr('data-content'); 
+
+			$('.modal img').attr('src', thePath);
+			$('.modal p').text(theDesc);
+			$('.overlay, .modal').addClass('active');
+
+		})
+
+		$('.close').click(function(){
+			$('.modal, .overlay').removeClass('active');
+
+		})
 
 
 </script>

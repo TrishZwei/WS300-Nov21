@@ -3,7 +3,7 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="utf-8">
-	<title>Fade Slide Show</title>
+	<title>Side Slide Show</title>
 	<style type="text/css">
 		body{
 			font-family: Verdana;
@@ -165,8 +165,52 @@
 	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 </p>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
 <script>
+	let slideCount = 0; //will store the number of slides in my slider
+	let currentSlide = 1; //keeps track of which slide is currently visible
+	const slideBox = $('.slide-container');
+
+	$('.slide').each( function(i){
+		//i is index
+		let slide = $(this)
+		if(i != 0){
+			//all other slides except first, move off to the right
+			slide.css({left:slideBox.width()})
+		}else{
+			slide.css({left:0}).addClass('current');
+		}
+
+		slide.attr('id', i+1);
+		slideCount++;
+
+	}) //end set up
+
+function nextSlide(){
+	let incomingSlide = currentSlide+1;
+		if(incomingSlide > slideCount){
+			incomingSlide = 1;
+		}
+
+		$('#'+currentSlide).animate({left:-slideBox.width()}, 900).removeClass('current');
+		$('#'+incomingSlide).css({left:slideBox.width()}).animate({left:0}, 900).addClass('current');
+		currentSlide = incomingSlide;
+
+}
+
+
+setInterval(nextSlide, 5000);
+
+function adjustSlider(){
+	let sBoxH = slideBox.outerHeight();
+	let sBoxW = slideBox.outerWidth(); //height, outerHeight, innerHeight may vary depending on the box model used on the element
+	$('.slide:not(".current")').css({left:sBoxW});
+
+}
+
+$(window).on('resize', adjustSlider);
+
+
+
 
 </script>
 </body>
