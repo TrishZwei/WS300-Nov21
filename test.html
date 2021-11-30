@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Testing Making a custom object on click</title>
+	<style type="text/css">
+		.plot{
+			height: 100px;
+			width: 100px;
+			background-color: brown;
+			margin: .5em;
+		}	
+
+		.red{
+			background-color: red;
+		}
+		.blue{
+			background-color: blue;
+		}
+
+
+	</style>
+</head>
+<body>
+	<div class="ui"><button id="style-one">House Style 1</button><button id="style-two">House Style 2</button> </div>
+	<div class="plot">House</div>
+	<div class="plot">House</div>
+<script type="text/javascript" src="classExample.js"></script>
+<script type="text/javascript">
+	const plots = document.querySelectorAll('div.plot');
+	const ui = document.querySelector('.ui');
+console.log(plots)
+console.log(ui)
+	let houseType = '';
+	
+ui.addEventListener( 'click', function(e){
+	const btn = e.target.id;
+	
+	if(btn){ //means there is a value and it is not empty, then do the code
+	console.log(btn);	
+	houseType = btn;
+		
+	}
+
+})
+
+function addHouse(ele, type = ''){
+	//ele, the plot that was clicked
+	//type, the style of house on the land
+	if(type){ 
+	//this only works if type is something other than the default value
+	ele.type = type;	
+	}else{
+		alert('you must select a type');
+	}
+	ele.classList = 'plot';
+	if(ele.type == 'style-one'){
+		ele.classList.add('red');
+	}else{
+		ele.classList.add('blue');
+	}
+
+
+	houseType = ''; //resetting the value
+
+	// if(ele.type == undefined){
+	// 	//does not have this property yet
+	// 	ele.type = type;
+	// }
+	console.log(ele.type); //the keyword this returns the window here.
+}	
+
+for(let i = 0; i < plots.length; i++){
+	plots[i].addEventListener('click', function(e){
+		addHouse(e.target, houseType)
+	})
+
+
+}
+
+
+</script>
+</body>
+</html>
