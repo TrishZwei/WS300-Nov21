@@ -122,6 +122,7 @@
 			background-color: grey;
 			color: white;
 		}
+
 		span.pager.active{
 			background-color: cadetblue;
 		}
@@ -174,6 +175,7 @@
 	let slideCount = 0; //will store the number of slides in my slider
 	let currentSlide = 1; //keeps track of which slide is currently visible
 	const slideBox = $('.slide-container');
+	const slideNav = $('.slide-arrow-container');
 	let auto = true; //holds if we are doing the slideshow automatically
 
 
@@ -210,16 +212,15 @@ function nextSlide(){
 }
 
 function prevSlide(){
-	removeClicks();
-	
+	removeClicks();	
 	let incomingSlide = currentSlide-1;	
 	if(incomingSlide < 1 ){
 		incomingSlide = slideCount; //sets calue back to highest slide
 	}
 		//animate out the currentSlide
-		$('#'+currentSlide).animate({left: slidebox.width()}, 900);
+		$('#'+currentSlide).animate({left: slideBox.width()}, 900).removeClass('current');
 		//animate in the incoming slide
-		$('#'+incomingSlide).css({left: -slidebox.width()}).animate({left:0}, 900, addClicks);
+		$('#'+incomingSlide).css({left: -slideBox.width()}).animate({left:0}, 900, addClicks).addClass('current');
 		//set the new value of the current slide
 		currentSlide = incomingSlide;
 }
@@ -230,9 +231,11 @@ function prevSlide(){
 //setInterval(nextSlide, 5000);
 
 function adjustSlider(){
+	let sNavH = slideNav.height();
 	let sBoxH = slideBox.outerHeight();
 	let sBoxW = slideBox.outerWidth(); //height, outerHeight, innerHeight may vary depending on the box model used on the element
 	$('.slide:not(".current")').css({left:sBoxW});
+	slideNav.css({top:(sBoxH/2)-(sNavH/2)});
 
 }
 
@@ -247,6 +250,7 @@ $(window).on('resize', adjustSlider);
 
 function addClicks(){
 	$('.next').on('click', nextSlide);
+	$('.prev').on('click', prevSlide);
 //add listener here for prev
 
 }
