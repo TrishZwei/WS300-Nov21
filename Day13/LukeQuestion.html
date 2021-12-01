@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Chart JS Demo</title>
+</head>
+<body>
+	<p>Taken from the <a href="https://www.chartjs.org/docs/latest/getting-started/">Getting Started</a> page: </p>
+<div>
+  <canvas id="my-chart"></canvas>
+</div>
+
+
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="text/javascript">
+/*this code was taken from: https://www.chartjs.org/docs/latest/getting-started/
+more examples: https://www.chartjs.org/docs/latest/samples/bar/vertical.html
+*/
+
+//set up
+	const labels = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+];
+//this is altered slightly as I wanted to confirm that I could put the data into a variable and not break this.
+
+let myData = [0, 10, 5, 2, 20, 30, 45];
+
+const data = {
+  labels: labels,
+  datasets: [{
+    label: 'My First dataset',
+    backgroundColor: 'rgb(255, 99, 132)',
+    borderColor: 'rgb(255, 99, 132)',
+    data: myData,
+  }]
+};
+
+//config
+const config = {
+  type: 'line',
+  data: data,
+  options: {}
+};
+
+//call the chart to render:
+  const myChart = new Chart(
+    document.getElementById('my-chart'),
+    config
+  );
+
+
+</script>
+</body>
+</html>
