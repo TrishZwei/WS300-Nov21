@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Random Joke</title>
+	<style type="text/css">
+			body{
+				font-family: Verdana;
+			}
+
+			.button{
+				width: 200px;
+				height: 40px;
+				background-color: rgba(102,51,153,1);
+				line-height: 40px;
+				text-align: center;
+				color: white;
+				cursor: pointer;
+				border: 1px solid purple;				
+			}
+
+			.button:hover{
+				background-color: rgba(244, 244, 244, 1);
+				border: 1px solid purple;
+				transition-duration: 1s;
+				color: rgba(102,51,153,1)
+			}
+
+	</style>
+</head>
+<body>
+<h1>Random Joke</h1>
+<p class="setup"></p>
+<p class="punchline"></p>
+<div class="new-joke button">Get New Joke</div>
+
+<!-- best practice put scripts at the bottom -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<!-- any plugins/extensions on jQuery go here-->
+
+<script type="text/javascript">
+function getData(){
+
+//https://v2.jokeapi.dev
+	
+url = 'https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&format=txt';
+//console.log('click');
+$.get(url, successFN);
+
+}//end getData
+
+function successFN(d){
+//console.log(d); //show us what data we have
+//console.log(d.indexOf());
+d = d.split('\n')
+//console.log(d[0], d[1], d[2])
+	let setup = d[0];
+	let punchline = d[2];
+	//console.log(setup, punchline)
+
+	$('.setup').text('').text(setup);
+	$('.punchline').text('').text(punchline);
+} //end successFN(d)
+
+getData();
+
+$('.button').on('click', getData)
+
+
+</script>
+</body>
+</html>
