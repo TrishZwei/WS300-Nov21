@@ -1,0 +1,98 @@
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <div>
+    <canvas id="myChart"></canvas>
+    </div>
+    <div>
+      <input class='barchart' id='wage1' placeholder='income' name='wages'><button id="month"><span>Label</span>'s income</button>
+    </div>
+  </body>
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  
+  let wagetop= document.querySelector('input#wage1')
+  let wages = [];
+  let currInputMonth = 0;
+  let myIncomeChart; //flagging this to store new Chart in the global scope
+
+  let monthLabels = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December'
+  ];
+
+  let btn = document.querySelector('#month');
+  btn.children[0].textContent = monthLabels[currInputMonth];
+
+
+  btn.addEventListener('click', function(e){
+    //oooo lookie here the unary+ ! (elsewise its a string and concatenates the 1 on to the end of the value. Bad juju)
+      let month_wage = + wagetop.value;
+      console.log(month_wage);
+      if(wages.length < monthLabels.length){
+        wages.push(month_wage);
+        if(myIncomeChart){
+          console.log(myIncomeChart);
+        myIncomeChart.destroy();
+        myIncomeChart = null;          
+        }
+
+        makeIncomeChart();
+        currInputMonth++;
+        btn.children[0].textContent = monthLabels[currInputMonth];
+      }else{
+        alert('You tried to enter too many months for the year')
+      }
+
+  });
+
+
+function makeIncomeChart(){
+
+let data = {
+  
+  labels: monthLabels,
+  datasets: [{
+    label: 'Year Review',
+    backgroundColor: 'rgb(255, 99, 132)',
+    borderColor: 'rgb(255, 99, 132)',
+    data: wages, //refers to the empty array uptop
+  }]
+};
+
+console.log(data.datasets[0].data)
+
+
+let config = {
+  type: 'bar',
+  data: data,
+  options: {}
+};
+
+  myIncomeChart = new Chart(
+      document.getElementById('myChart'),
+      config
+  );
+
+  myIncomeChart.render();
+  
+
+
+
+}
+  
+</script>
