@@ -332,19 +332,35 @@
     	redGCoords = '#12-13',
     	greenGCoords = '#11-12',
     	blueGCoords = '#10-13',
-    	pinkGCoords = '#11-13';;
+    	pinkGCoords = '#11-13';
 
 //sounds go here:
 
-//manipulate properties of sounds as needed:
+	const death = new Audio('sounds/pacman_death.mp3'),
+		  chomp = new Audio('sounds/pacman_chomp.mp3'),
+		  pellet = new Audio('sounds/pacman_pellet.mp3'),
+		  intro = new Audio('sounds/pacman_beginning.mp3'),
+		  siren = new Audio('sounds/pacman_siren.mp3'),
+		  eatGhost = new Audio('sounds/pacman_eatghost.mp3');
 
+//manipulate properties of sounds as needed:
+		chomp.volume = .5; //half its normal volume
+		siren.loop = true; //repeats
+
+
+//event listener on audio object
+intro.addEventListener('ended', function(){
+	gameRunning =  true;
+	moveGhost(); //starts timeout for ghosts movement
+})
 
 
 	$('.start').click(setUpGame)
 
 	function setUpGame(){
-	gameRunning = true;
-	moveGhost(); //starts timeout for ghosts movement	
+	//gameRunning = true;
+	intro.play();
+		
 	$('.start, .info').hide();
 	$('.score').show()	
 	pacmanX = 11; 
@@ -392,7 +408,6 @@ $('#1-1, #3-1, #4-1, #5-1, #6-1, #7-1, #8-1, #9-1, #10-1, #12-1, #13-1, #14-1, #
 $(document).keydown( function(e){
     //player movement is determined here.
 
-    //let eating = false;
     if(gameRunning == true){
 
         let tempX = pacmanX, 
@@ -436,6 +451,8 @@ $(document).keydown( function(e){
 
             if($('#'+tempX+'-'+tempY).hasClass('beans')){
                 score+=50;
+                chomp.pause();
+                chomp.play();
             }
 
         }else if(tempX == -1 && tempY == 13 ){
@@ -445,12 +462,16 @@ $(document).keydown( function(e){
 
             if($('#'+tempX+'-'+tempY).hasClass('beans')){
                 score+=50;
+                chomp.pause();
+                chomp.play();
                 $('#'+tempX+'-'+tempY).removeClass('beans')
             }
 
         }else if($('#'+tempX+'-'+tempY).hasClass('ghosty')){
             //console.log('player gets to eats ghost. returns to start position')
             update = true;
+            chomp.pause();
+            eatGhost.play()
 
             let color = '';
             //TODO: think about a more elegent solution....
@@ -473,7 +494,8 @@ $(document).keydown( function(e){
 
             if($('#'+tempX+'-'+tempY).hasClass('beans')){
                 score+=50
-                
+                chomp.pause();
+                chomp.play();
             }
 
             $('#'+tempX+'-'+tempY).removeClass('ghost ghosty');
@@ -497,12 +519,16 @@ $(document).keydown( function(e){
 
             if($('#'+tempX+'-'+tempY).hasClass('power')){
                 score+=100;
+                chomp.pause();
+                pellet.play();
                 //make ghosts turn ghosty...
                 getGhosts();
             }
 
             if($('#'+tempX+'-'+tempY).hasClass('beans')){
                 score+=50;
+                chomp.pause();
+                chomp.play();
             }
 
         } //ends check squares for movement
@@ -590,11 +616,8 @@ function moveGhost(){
         if( eTempY < 0 || eTempX < 0 || eTempX > columns-1 || eTempY > rows-1 || $('#'+eTempX+'-'+eTempY).hasClass('wall') || $('#'+eTempX+'-'+eTempY).hasClass('ghost')){
         //ghost cannot move.
 
-
-
         //need to find open square: dir 1 is up, dir 2 is down, dir 3 right, dir 4 is left. We can put that here in order to speed up good movement.
         
-
 
         }else if($('#'+eTempX+'-'+eTempY).hasClass('pacman') && !(ghost.hasClass('ghosty'))){
             console.log ('regular ghost has hit pacman')
@@ -652,14 +675,16 @@ function gameOver(result = 'lose'){
     gameRunning = false;
     //result will specify if win or lose, lose is default
     clearTimeout(moveTghost);
+
     let message = '';
 
     if(result == 'win'){
         message = `<h2>You Win!!!</h2>
         <div class="option win button">Click here to log your score!</div>`;
     }else{
+    	death.play();
         message = `<h2>You Lose!</h2>
-        <div class="option lose button">Try Again!</div>`;;
+        <div class="option lose button">Try Again!</div>`;
         
     }
 
@@ -688,8 +713,9 @@ function getRandomInt(min = 1, max = 100){
 function getGhosts(){
     //turns the ghosts into things pacman can eat.
     $('.ghost').addClass('ghosty');
+    siren.play();
         setTimeout( function(){
-   
+   		siren.pause();
         $('.ghosty').removeClass('ghosty');
     },10000)
 }
