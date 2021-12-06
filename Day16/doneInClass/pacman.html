@@ -385,7 +385,7 @@ $('#1-1, #3-1, #4-1, #5-1, #6-1, #7-1, #8-1, #9-1, #10-1, #12-1, #13-1, #14-1, #
 
 	$('#1-3, #21-3, #1-21, #21-21').addClass('power');
 
-	intro.play();
+	
 
 	} // end set up game
 
@@ -473,7 +473,7 @@ $(document).keydown( function(e){
 
             if($('#'+tempX+'-'+tempY).hasClass('beans')){
                 score+=50
-                chomp.play();
+                
             }
 
             $('#'+tempX+'-'+tempY).removeClass('ghost ghosty');
@@ -660,7 +660,7 @@ function gameOver(result = 'lose'){
     }else{
         message = `<h2>You Lose!</h2>
         <div class="option lose button">Try Again!</div>`;;
-        death.play();
+        
     }
 
     $('#grid-container').html(message); 
@@ -688,9 +688,8 @@ function getRandomInt(min = 1, max = 100){
 function getGhosts(){
     //turns the ghosts into things pacman can eat.
     $('.ghost').addClass('ghosty');
-    siren.play();
-    setTimeout( function(){
-    	siren.pause();
+        setTimeout( function(){
+   
         $('.ghosty').removeClass('ghosty');
     },10000)
 }
