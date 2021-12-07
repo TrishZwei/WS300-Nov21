@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Base HTML</title>
+  <!-- includes styles needed for demos -->
+  <style type="text/css">
+    .go{
+      margin: 5rem;
+      background: white;
+      padding: 5rem;
+      width: 25rem;
+      height: 25rem;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .go.circle{
+      border-radius: 50%;
+    }
+
+    .go.red{
+      background: red;
+    }
+
+    .go.purple{
+      background: purple;
+      color: white;
+    }
+
+    .go.fade-out{
+      opacity: 0;
+    }
+
+  </style>
+</head>
+<body>
+
+<script>
+function makePizza(){
+  const pizzaPromise = new Promise( function(resolve, reject) {
+    //when ready, resolve the promise
+    resolve('🍕');
+  })
+  return pizzaPromise;
+}
+
+
+const pizza = makePizza();
+
+  console.log(pizza);
+
+</script>
+</body>
+
+</html>
