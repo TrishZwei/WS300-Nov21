@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Base HTML</title>
+</head>
+<body>
+<script>
+  "use strict";
+
+  //a function that helps us wait.
+  function wait(ms=0){
+    return new Promise( (resolve) => {
+      setTimeout(resolve, ms);
+    })
+  }
+
+  async function go(){
+    console.log('starting');
+    await wait(2000);
+    console.log('ending');
+
+  }
+
+go();
+
+
+//lots of ways to write functions:
+
+//declaration:
+async function fd(){ 
+//code goes here
+}
+
+//arrow function
+const arrowfn = async () =>{
+  //code goes here
+}
+
+//callback function:
+window.addEventListener('click', async function(){})
+
+//static methods in custom objects:
+const person = {
+  sayHello: async function(){
+
+  },
+  async sayHi()
+
+  //arrow
+  sayHey: async () => {}
+
+  }
+
+/*
+  await is only valid in async functions
+
+
+
+*/
+
+
+
+
+</script>
+</body>
+
+</html>
