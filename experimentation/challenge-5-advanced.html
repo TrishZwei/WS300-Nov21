@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge 5</title>
+    <style>
+        body {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 1.5em;
+            padding: 100px 0 0;
+            background-color: #aaa;
+        }
+
+        div {
+            height: 50px;
+            width: 50%;
+            margin: 10px auto;
+            background-color: #123456;
+            color: white;
+            line-height: 2;
+            text-align: center;
+        }
+
+        div.daytime {
+            background-color: goldenrod;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="clock"></div>
+    <script>
+
+        const div = document.querySelector(".clock")
+
+        function setTimeStyle(date) {
+            date.getHours() >= 6 && date.getHours() < 18 ? div.classList.add("daytime") : div.classList.remove("daytime");
+        }
+
+        function getTime() {
+            const date = new Date()
+            //this is effing awesome.
+            div.textContent = date.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: "true" });
+            setTimeStyle(date)
+            window.requestAnimationFrame(getTime)
+        }
+        getTime();
+
+
+    </script>
+</body>
+
+
+</html>
